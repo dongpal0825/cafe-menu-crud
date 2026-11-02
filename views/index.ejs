@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>카페 메뉴</title>
+</head>
+<body>
+  <h1>카페 메뉴</h1>
+
+  <h2>메뉴 추가</h2>
+  <form action="/menus" method="post">
+    <input type="text" name="menu" placeholder="메뉴 이름" required>
+    <input type="text" name="category" placeholder="카테고리" required>
+    <input type="number" name="price" placeholder="가격" required>
+    <button type="submit">추가</button>
+  </form>
+
+  <h2>메뉴 수정</h2>
+  <form action="/menus/update" method="post">
+    <input type="number" name="id" placeholder="수정할 번호" required>
+    <input type="text" name="menu" placeholder="새 메뉴 이름" required>
+    <input type="text" name="category" placeholder="새 카테고리" required>
+    <input type="number" name="price" placeholder="새 가격" required>
+    <button type="submit">수정</button>
+  </form>
+
+  <h2>메뉴 삭제</h2>
+  <form action="/menus/delete" method="post">
+    <input type="number" name="id" placeholder="삭제할 번호" required>
+    <button type="submit">삭제</button>
+  </form>
+
+  <h2>메뉴 목록</h2>
+  <form action="/" method="get">
+    <input type="text" name="keyword" value="<%= keyword %>" placeholder="메뉴 이름 검색">
+    <button type="submit">검색</button>
+    <a href="/">전체 보기</a>
+  </form>
+
+  <table border="1">
+    <tr>
+      <th>번호</th>
+      <th>메뉴</th>
+      <th>카테고리</th>
+      <th>가격</th>
+    </tr>
+    <% menus.forEach(function (m) { %>
+      <tr>
+        <td><%= m.id %></td>
+        <td><%= m.menu %></td>
+        <td><%= m.category %></td>
+        <td><%= m.price %></td>
+      </tr>
+    <% }); %>
+  </table>
+</body>
+</html>
